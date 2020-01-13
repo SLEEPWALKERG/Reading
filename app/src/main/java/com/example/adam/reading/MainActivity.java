@@ -1,8 +1,10 @@
 package com.example.adam.reading;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
@@ -12,11 +14,14 @@ public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private MeFragment meFragment;
     private BookFragment bookFragment;
+    private String usrname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        usrname = intent.getStringExtra("username");
         bottomNavigationBar = findViewById(R.id.bnb);
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_RIPPLE);
@@ -69,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     private void setDefaultFragment() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         homeFragment = HomeFragment.newInstance("首页");
-        fragmentTransaction.replace(R.id.fmlayout,homeFragment);
+        fragmentTransaction.replace(R.id.fmlayout, homeFragment);
         fragmentTransaction.commit();
     }
 
